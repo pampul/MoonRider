@@ -1,0 +1,29 @@
+{
+  "name": "MoonRider",
+  "version": "1.0.0",
+  "license": "BSD",
+  "description": "Web Analytics to handle your website performances all over the time.",
+  "main": "./dist/moonrider.js",
+  "authors": [
+    "Argetloum <florian.mithieux@gmail.com>"
+  ],
+  "keywords": [
+    "Metrics",
+    "Analytics",
+    "MoonRider",
+    "Atomic"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "gulpfile.js",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "atomic": "toddmotto/atomic#~1.0.0"
+  },
+  "overrides": {
+  }
+}

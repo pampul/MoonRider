@@ -1,0 +1,27 @@
+{
+  "name": "MoonRider",
+  "description": "Web Analytics to handle your website performances all over the time.",
+  "copyright": "2014",
+  "version": "1.0.0",
+  "author": " <florian.mithieux@gmail.com>",
+  "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/Argetloum/MoonRider.git"
+  },
+  "devDependencies": {
+    "bower": "~1.2.6",
+    "gulp": "~3.6.0",
+    "gulp-concat": "~2.1.7",
+    "gulp-uglify": "~0.2.1",
+    "gulp-jshint": "~1.5.0",
+    "gulp-rename": "^1.1.0",
+    "gulp-watch": "^0.5.0",
+    "gulp-notify": "^1.0.0-beta",
+    "gulp-coffee": "~1.4.1",
+    "gulp-util": "~2.2.14"
+  },
+  "scripts": {
+    "postinstall": "node_modules/.bin/bower install"
+  }
+}
