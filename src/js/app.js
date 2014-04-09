@@ -1,4 +1,4 @@
-var MoonRider, Performance, moonRider;
+var MoonRider, Performance, delay;
 
 MoonRider = (function() {
   function MoonRider() {}
@@ -14,9 +14,13 @@ MoonRider = (function() {
 })();
 
 Performance = (function() {
+  Performance.prototype.timing = window.performance.timing;
+
   Performance.prototype.domContentReadableTime = 0;
 
-  Performance.prototype.domContentLoadTime = 0;
+  Performance.prototype.serverLoadingTime = 0;
+
+  Performance.prototype.totalLoadingTime = 0;
 
   Performance.prototype.loadEventTime = 0;
 
@@ -25,17 +29,28 @@ Performance = (function() {
   }
 
   Performance.prototype.getLoadingTimes = function() {
-    this.domContentLoadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart;
-    this.domContentReadableTime = window.performance.timing.domComplete - window.performance.timing.navigationStart;
-    return this.loadEventTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart;
+    this.totalLoadingTime = this.timing.loadEventEnd - this.timing.navigationStart;
+    this.domContentLoadTime = this.timing.domContentLoadedEventEnd - this.timing.responseEnd;
+    this.serverLoadingTime = this.timing.responseEnd - this.timing.requestStart;
+    return this.loadEventTime = this.timing.loadEventEnd - this.timing.responseEnd;
   };
 
   return Performance;
 
 })();
 
-moonRider = new MoonRider();
+window.onload = function() {
+  return delay(0, function() {
+    var moonRider;
+    if (!window.performance || !performance.timing) {
+      return;
+    }
+    moonRider = new MoonRider();
+    moonRider.setPerformance();
+    return console.log(moonRider.performance);
+  });
+};
 
-moonRider.setPerformance();
-
-console.log(moonRider.performance.domContentLoadTime);
+delay = function(ms, func) {
+  return setTimeout(func, ms);
+};

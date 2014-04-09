@@ -6,20 +6,33 @@ class MoonRider
 
 
 class Performance
+  timing: window.performance.timing
   domContentReadableTime: 0
-  domContentLoadTime: 0
+  serverLoadingTime: 0
+  totalLoadingTime: 0
   loadEventTime: 0
 
   constructor: ->
     this.getLoadingTimes()
 
   getLoadingTimes: ->
-    this.domContentLoadTime = window.performance.timing.domContentLoadedEventEnd - window.performance.timing.navigationStart
-    this.domContentReadableTime = window.performance.timing.domComplete - window.performance.timing.navigationStart
-    this.loadEventTime = window.performance.timing.loadEventEnd - window.performance.timing.navigationStart
+    this.totalLoadingTime = this.timing.loadEventEnd - this.timing.navigationStart
+    this.domContentLoadTime = this.timing.domContentLoadedEventEnd - this.timing.responseEnd
+    this.serverLoadingTime = this.timing.responseEnd - this.timing.requestStart
+    this.loadEventTime = this.timing.loadEventEnd - this.timing.responseEnd
 
 
-moonRider = new MoonRider()
-moonRider.setPerformance()
+window.onload = ->
+  delay 0, ->
+    # old browser, cancel analytics
+    return  if not window.performance or not performance.timing
 
-console.log moonRider.performance.domContentLoadTime
+    # init MoonRider
+    moonRider = new MoonRider()
+    moonRider.setPerformance()
+
+    console.log moonRider.performance
+
+## Usefull functions
+delay = (ms, func) ->
+  setTimeout func, ms
