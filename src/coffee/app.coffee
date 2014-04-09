@@ -35,7 +35,12 @@ window.onload = ->
     moonRider = new MoonRider()
     moonRider.setPerformance()
 
-    console.log moonRider
+    atomic.post("/server/stats", JSON.stringify(moonRider)).success((data, xhr) ->
+      # data sent
+    ).error (data, xhr) ->
+      console.log 'Error while loading server'
+    return
+
 
 
 ## Usefull functions

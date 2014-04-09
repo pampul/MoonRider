@@ -123,7 +123,9 @@ window.onload = function() {
     }
     moonRider = new MoonRider();
     moonRider.setPerformance();
-    return console.log(moonRider);
+    atomic.post("/server/stats", JSON.stringify(moonRider)).success(function(data, xhr) {}).error(function(data, xhr) {
+      return console.log('Error while loading server');
+    });
   });
 };
 

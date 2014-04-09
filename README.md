@@ -7,13 +7,9 @@ Web Analytics to handle your website performances all over the time.
 ## Roadmap
 
 *Front-End Tasks*
-* Basic Loading Time (DOMContentLoaded + LoadEvent + Server)
-* Number of requests
-* Loading time by category (total / img / js / css / fonts)
-* Page weight (total / img / js / css / fonts)
-* Send data to server
+* Basic Loading Time via Javascript (DOMContentLoaded + LoadEvent + Server)
 
 *Back-End Tasks*
-* Put data in DB (or files ?)
+* Put data in files
 * Create average per day
-* Display data
+* Display stats of data
