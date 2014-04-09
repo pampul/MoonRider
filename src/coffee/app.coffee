@@ -1,3 +1,4 @@
+## Main class
 class MoonRider
   performance: null
 
@@ -5,6 +6,7 @@ class MoonRider
     this.performance = new Performance()
 
 
+## Basic performances class
 class Performance
   timing: window.performance.timing
   domContentReadableTime: 0
@@ -22,6 +24,8 @@ class Performance
     this.loadEventTime = this.timing.loadEventEnd - this.timing.responseEnd
 
 
+
+## MoonRider
 window.onload = ->
   delay 0, ->
     # old browser, cancel analytics
@@ -31,7 +35,8 @@ window.onload = ->
     moonRider = new MoonRider()
     moonRider.setPerformance()
 
-    console.log moonRider.performance
+    console.log moonRider
+
 
 ## Usefull functions
 delay = (ms, func) ->

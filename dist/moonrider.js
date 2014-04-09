@@ -123,7 +123,7 @@ window.onload = function() {
     }
     moonRider = new MoonRider();
     moonRider.setPerformance();
-    return console.log(moonRider.performance);
+    return console.log(moonRider);
   });
 };
 
