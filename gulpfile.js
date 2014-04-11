@@ -8,6 +8,7 @@ var watch = require('gulp-watch');
 var notify = require('gulp-notify');
 var coffee = require('gulp-coffee');
 var gutil = require('gulp-util');
+var stylish = require('jshint-stylish');
 
 var paths = {
 
@@ -95,9 +96,11 @@ gulp.task('js-one-time', function () {
 gulp.task('lint', function () {
   gulp.src(paths.scripts.jsHint)
     .pipe(jshint())
-    .pipe(jshint.reporter('default'));
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('default', ['coffee', 'js']);
+
+gulp.task('jshint', ['lint']);
 
 gulp.task('prod', ['js-one-time', 'lint']);

@@ -19,7 +19,8 @@
     "gulp-watch": "^0.5.0",
     "gulp-notify": "^1.0.0-beta",
     "gulp-coffee": "~1.4.1",
-    "gulp-util": "~2.2.14"
+    "gulp-util": "~2.2.14",
+    "jshint-stylish": "~0.1.5"
   },
   "scripts": {
     "postinstall": "node_modules/.bin/bower install"
