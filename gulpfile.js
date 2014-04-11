@@ -9,12 +9,25 @@ var notify = require('gulp-notify');
 var coffee = require('gulp-coffee');
 var gutil = require('gulp-util');
 var stylish = require('jshint-stylish');
+var nodemon = require('gulp-nodemon');
 
 var paths = {
 
   coffee: {
     src: 'src/coffee/*.coffee',
     dest: 'src/js/'
+  },
+
+  nodeJS:{
+    src: [
+      'server/src/*.coffee'
+    ],
+    dest: 'server/dist/',
+    main: 'server/dist/server.js',
+    jsHint: [
+      'server/src/server.js',
+      'server/src/**/*.js'
+    ]
   },
 
   scripts: {
@@ -35,6 +48,9 @@ var paths = {
     js: [
       'src/js/app.js',
       'src/js/**/*.js'
+    ],
+    nodeJS: [
+      'server/src/server.coffee'
     ],
     coffee: [
       'src/coffee/app.coffee',
@@ -75,6 +91,27 @@ gulp.task('js', function () {
     }));
 });
 
+/**
+ * Javascript tasks
+ */
+gulp.task('node-js', function () {
+  gulp.src(paths.watch.nodeJS)
+    .pipe(watch(function (files) {
+      gulp.src(paths.nodeJS.src)
+        .pipe(coffee({
+          bare: true
+        }).on('error', gutil.log))
+        .pipe(gulp.dest(paths.nodeJS.dest));
+    }));
+});
+
+gulp.task('develop', function () {
+  nodemon({ script: paths.nodeJS.main, ext: 'html js', ignore: ['ignored.js'] })
+    .on('change', ['lint'])
+    .on('restart', function () {
+      console.log('restarted!')
+    })
+})
 
 /**
  * Javascript one time tasks
@@ -99,7 +136,9 @@ gulp.task('lint', function () {
     .pipe(jshint.reporter(stylish));
 });
 
-gulp.task('default', ['coffee', 'js']);
+gulp.task('default', ['coffee', 'js', 'node-js']);
+
+gulp.task('node', ['develop']);
 
 gulp.task('jshint', ['lint']);
 
