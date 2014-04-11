@@ -1,3 +1,4 @@
+'use strict'
 ## Main class
 class MoonRider
   performance: null
@@ -11,6 +12,7 @@ class MoonRider
 
   setPerformance: ->
     this.performance = new Performance()
+    return
 
 
 ## Basic performances class
@@ -48,6 +50,7 @@ class WebSite
         this.host = windowHost
     else
       this.host = windowHost
+    return
 
 ## Client info
 class Client
@@ -61,14 +64,14 @@ class Client
 window.onload = ->
   delay 0, ->
     # old browser, cancel analytics
-    return  if not window.performance or not performance.timing
+    return  if not window.performance
 
     # init MoonRider
     moonRider = new MoonRider()
 
-    atomic.post("/server/stats", JSON.stringify(moonRider)).success((data, xhr) ->
+    atomic.post('/server/stats', JSON.stringify(moonRider)).success(() ->
       # data sent
-    ).error (data, xhr) ->
+    ).error () ->
       console.log 'Error while loading server'
     return
 

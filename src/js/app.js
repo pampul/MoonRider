@@ -1,3 +1,4 @@
+'use strict';
 var Client, MoonRider, Performance, WebSite, delay,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
@@ -15,7 +16,7 @@ MoonRider = (function() {
   }
 
   MoonRider.prototype.setPerformance = function() {
-    return this.performance = new Performance();
+    this.performance = new Performance();
   };
 
   return MoonRider;
@@ -61,12 +62,12 @@ WebSite = (function() {
     if (windowHost === 'localhost') {
       pathArray = window.location.pathname.split('/');
       if (pathArray[1]) {
-        return this.host = windowHost + '/' + pathArray[1];
+        this.host = windowHost + '/' + pathArray[1];
       } else {
-        return this.host = windowHost;
+        this.host = windowHost;
       }
     } else {
-      return this.host = windowHost;
+      this.host = windowHost;
     }
   };
 
@@ -88,11 +89,11 @@ Client = (function() {
 window.onload = function() {
   return delay(0, function() {
     var moonRider;
-    if (!window.performance || !performance.timing) {
+    if (!window.performance) {
       return;
     }
     moonRider = new MoonRider();
-    atomic.post("/server/stats", JSON.stringify(moonRider)).success(function(data, xhr) {}).error(function(data, xhr) {
+    atomic.post('/server/stats', JSON.stringify(moonRider)).success(function() {}).error(function() {
       return console.log('Error while loading server');
     });
   });
