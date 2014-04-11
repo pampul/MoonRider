@@ -7,7 +7,8 @@ app.get "/", (req, res) ->
 
 ## Post data threw url
 app.post "/data", (req, res) ->
-
+  res.send "Message received"
+  return
 
 ## Page to display the stats
 app.get "/stats/:site", (req, res) ->

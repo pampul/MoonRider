@@ -69,7 +69,7 @@ window.onload = ->
     # init MoonRider
     moonRider = new MoonRider()
 
-    atomic.post('/server/status', JSON.stringify(moonRider)).success(() ->
+    atomic.post('/data', JSON.stringify(moonRider)).success(() ->
       # data sent
     ).error () ->
       console.log 'Error while sending data to server ...'

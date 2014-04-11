@@ -8,7 +8,9 @@ app.get("/", function(req, res) {
   res.send("Hello world");
 });
 
-app.post("/data", function(req, res) {});
+app.post("/data", function(req, res) {
+  res.send("Message received");
+});
 
 app.get("/stats/:site", function(req, res) {
   res.send("Get data for website : " + req.params.site);
