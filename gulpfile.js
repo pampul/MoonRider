@@ -8,8 +8,8 @@ var watch = require('gulp-watch');
 var notify = require('gulp-notify');
 var coffee = require('gulp-coffee');
 var gutil = require('gulp-util');
-var stylish = require('jshint-stylish');
 var nodemon = require('gulp-nodemon');
+var stylish = require('jshint-stylish');
 
 var paths = {
 
@@ -107,7 +107,9 @@ gulp.task('node-js', function () {
 
 gulp.task('develop', function () {
   nodemon({ script: paths.nodeJS.main, ext: 'html js', ignore: ['ignored.js'] })
-    .on('change', ['lint'])
+    .on('change', function(){
+      // Maybe lint ?
+    })
     .on('restart', function () {
       console.log('restarted!')
     })

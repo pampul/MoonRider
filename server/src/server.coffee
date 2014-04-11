@@ -5,7 +5,7 @@ app.get "/", (req, res) ->
   res.send "Hello world"
   return
 
-##
+## Post data threw url
 app.post "/data", (req, res) ->
 
 
