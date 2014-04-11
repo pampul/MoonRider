@@ -105,7 +105,7 @@ gulp.task('node-js', function () {
     }));
 });
 
-gulp.task('develop', function () {
+gulp.task('node-development', function () {
   nodemon({ script: paths.nodeJS.main, ext: 'html js', ignore: ['ignored.js'] })
     .on('change', function(){
       // Maybe lint ?
@@ -140,7 +140,7 @@ gulp.task('lint', function () {
 
 gulp.task('default', ['coffee', 'js', 'node-js']);
 
-gulp.task('node', ['develop']);
+gulp.task('node-dev', ['node-development']);
 
 gulp.task('jshint', ['lint']);
 
