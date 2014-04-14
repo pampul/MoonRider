@@ -79,14 +79,3 @@ window.onload = ->
 ## Usefull functions
 delay = (ms, func) ->
   setTimeout func, ms
-
-jsonp = (url, data) ->
-  script = document.createElement('script');
-  script.src = url + '?data=' + 'test';
-  document.body.appendChild(script);
-
-__parseJSONPResponse = (data) ->
-  # now you have access to your data
-  console.log 'parsed'
-
-
