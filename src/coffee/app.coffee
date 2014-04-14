@@ -43,7 +43,7 @@ class WebSite
   setHost: ->
     windowHost = window.location.host
     if windowHost == 'localhost'
-      pathArray = window.location.pathname.split( '/' )
+      pathArray = window.location.pathname.split('/')
       if pathArray[1]
         this.host = windowHost + '/' + pathArray[1]
       else
@@ -69,14 +69,24 @@ window.onload = ->
     # init MoonRider
     moonRider = new MoonRider()
 
-    atomic.post('/data', JSON.stringify(moonRider)).success(() ->
+    atomic.post('http://localhost:8888/data', JSON.stringify(moonRider)).success(() ->
       # data sent
     ).error () ->
       console.log 'Error while sending data to server ...'
     return
 
 
-
 ## Usefull functions
 delay = (ms, func) ->
   setTimeout func, ms
+
+jsonp = (url, data) ->
+  script = document.createElement('script');
+  script.src = url + '?data=' + 'test';
+  document.body.appendChild(script);
+
+__parseJSONPResponse = (data) ->
+  # now you have access to your data
+  console.log 'parsed'
+
+

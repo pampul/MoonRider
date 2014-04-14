@@ -1,5 +1,5 @@
 'use strict';
-var Client, MoonRider, Performance, WebSite, delay,
+var Client, MoonRider, Performance, WebSite, delay, jsonp, __parseJSONPResponse,
   __indexOf = [].indexOf || function(item) { for (var i = 0, l = this.length; i < l; i++) { if (i in this && this[i] === item) return i; } return -1; };
 
 MoonRider = (function() {
@@ -93,7 +93,7 @@ window.onload = function() {
       return;
     }
     moonRider = new MoonRider();
-    atomic.post('/data', JSON.stringify(moonRider)).success(function() {}).error(function() {
+    atomic.post('http://localhost:8888/data', JSON.stringify(moonRider)).success(function() {}).error(function() {
       return console.log('Error while sending data to server ...');
     });
   });
@@ -101,4 +101,15 @@ window.onload = function() {
 
 delay = function(ms, func) {
   return setTimeout(func, ms);
+};
+
+jsonp = function(url, data) {
+  var script;
+  script = document.createElement('script');
+  script.src = url + '?data=' + 'test';
+  return document.body.appendChild(script);
+};
+
+__parseJSONPResponse = function(data) {
+  return console.log('parsed');
 };
