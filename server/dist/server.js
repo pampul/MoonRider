@@ -70,7 +70,13 @@ app.post("/data", function(req, res) {
 });
 
 app.get("/stats/:site", function(req, res) {
-  res.send("Get data for website : " + req.params.site);
+  var webSitePath;
+  webSitePath = path.resolve('server/data/' + req.params.site);
+  if (fs.existsSync(webSitePath)) {
+
+  } else {
+    res.send('No data founded.');
+  }
 });
 
 app.listen(8888);

@@ -60,7 +60,12 @@ app.post "/data", (req, res) ->
 
 ## Page to display the stats
 app.get "/stats/:site", (req, res) ->
-  res.send "Get data for website : " + req.params.site
+  webSitePath = path.resolve 'server/data/' + req.params.site
+
+  if fs.existsSync(webSitePath)
+
+  else
+    res.send 'No data founded.'
   return
 
 ## Launching app
