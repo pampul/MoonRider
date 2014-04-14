@@ -73,7 +73,7 @@ app.get("/stats/:site", function(req, res) {
   var webSitePath;
   webSitePath = path.resolve('server/data/' + req.params.site);
   if (fs.existsSync(webSitePath)) {
-
+    res.send('Founded');
   } else {
     res.send('No data founded.');
   }

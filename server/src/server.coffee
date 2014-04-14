@@ -63,7 +63,7 @@ app.get "/stats/:site", (req, res) ->
   webSitePath = path.resolve 'server/data/' + req.params.site
 
   if fs.existsSync(webSitePath)
-
+    res.send 'Founded'
   else
     res.send 'No data founded.'
   return
