@@ -23,12 +23,6 @@
     return [result, req];
   };
 
-  var jsonp = function(url, data) {
-    var script = document.createElement('script');
-    script.src = url+'?data='+data;
-    document.body.appendChild(script);
-  }
-
   var xhr = function (type, url, data) {
     var methods = {
       success: function () {},
@@ -70,10 +64,6 @@
 
   exports['post'] = function (url, data) {
     return xhr('POST', url, data);
-  };
-
-  exports['jsonp'] = function (url, data) {
-    return jsonp(url, data);
   };
 
   exports['delete'] = function (url) {
