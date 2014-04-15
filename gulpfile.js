@@ -28,7 +28,8 @@ var paths = {
 
   nodeJS:{
     src: [
-      'server/src/*.coffee'
+      'server/src/*.coffee',
+      'server/src/**/*.coffee'
     ],
     dest: 'server/dist/',
     main: 'server/dist/server.js',
@@ -88,7 +89,8 @@ var paths = {
       'app/src/js/**/*.js'
     ],
     nodeJS: [
-      'server/src/server.coffee'
+      'server/src/server.coffee',
+      'server/src/**/*.coffee'
     ],
     coffee: [
       'client/src/coffee/app.coffee',
