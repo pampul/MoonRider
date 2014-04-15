@@ -4,8 +4,15 @@
 
 express = require("express")
 config = require("./config")
+swig = require('swig')
 
 module.exports = (app) ->
+
+  #Set views path, template engine and default layout.
+  app.set "view engine", "html"
+  app.engine "html", swig.renderFile
+  app.set "views", config.root + '/../app/public'
+
   app.use (req, res, next) ->
     if req.headers.origin
       res.header "Access-Control-Allow-Origin", "*"

@@ -4,7 +4,7 @@
 fs = require('fs')
 path = require('path')
 mkdirp = require('mkdirp')
-
+config = require("./../config/config")
 
 
 exports.postData = (req, res) ->
@@ -19,7 +19,7 @@ exports.postData = (req, res) ->
     webSiteUrl = clientData.webSite.host
     webSiteUrl = webSiteUrl.replace('/', '-')
     webSiteUrl = webSiteUrl.toLowerCase()
-    currentPath = path.resolve 'server/data/' + webSiteUrl
+    currentPath = config.root + '/data/' + webSiteUrl
     fullPath = currentPath + '/' + date.getFullYear() + '/' + pad(date.getMonth() + 1) + '/' + pad(date.getDate())
     currentHourMin = pad(date.getHours()) + '-' + pad(date.getMinutes())
     currentHourMinPlus = pad(date.getHours() - 1) + '-' + pad(date.getMinutes()) + '.json'
@@ -39,11 +39,11 @@ exports.postData = (req, res) ->
 
           if currentHourMinPlus > maxFile
             # We can wrote a new stats file
-            fs.writeFile fullPath+'/'+currentHourMin+'.json', JSON.stringify(clientData, null, 2), (err) ->
+            fs.writeFile fullPath + '/' + currentHourMin + '.json', JSON.stringify(clientData, null, 2), (err) ->
               if err
                 console.log err
               else
-                console.log "JSON saved to " + fullPath+'/'+currentHourMin+'.json'
+                console.log "JSON saved to " + fullPath + '/' + currentHourMin + '.json'
                 res.send 'Data saved.'
               return
 

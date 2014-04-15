@@ -2,11 +2,9 @@
   Module dependencies.
 ###
 path = require("path")
-rootPath = path.normalize __dirname + "/../.."
-srcPath = path.normalize __dirname
+rootPath = path.resolve 'server/'
 
 # Defaults that you can access when you require this config.
 module.exports =
   root: rootPath
-  srcPath: srcPath
   port: 8888

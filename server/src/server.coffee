@@ -2,15 +2,15 @@ express = require("express")
 path = require('path')
 
 # Load configurations
-config = require(__dirname+'/config/config')
+config = require('./config/config')
 
 app = express()
 
 # Express setup and settings
-require(config.srcPath+"/express") app
+require('./config/express') app
 
 # Bootstrap routes
-require(config.srcPath+"/routes") app
+require('./config/routes') app
 
 # Start the app by listening on <port>
 port = config.port
