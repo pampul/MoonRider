@@ -19,8 +19,6 @@ node_modules
 ## EditorConfig
 .idea
 
-## Bower
-src/components
 
 ## Sass
 .sass-cache
@@ -39,8 +37,3 @@ Thumbs.db
 ehthumbs.db
 Desktop.ini
 $RECYCLE.BIN/
-
-
-## Server dependencies
-/server/composer.phar
-/server/vendor/
