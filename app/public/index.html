@@ -9,6 +9,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
 
   <link href="//www.google-analytics.com" rel="dns-prefetch">
+  <script type="text/javascript" src="https://www.google.com/jsapi"></script>
   <link href="/assets/css/styles.css" rel="stylesheet">
 
 </head>
@@ -17,19 +18,213 @@
 <header class="header" role="banner">
 
   <div class="jumbotron">
-    Header
+    <div class="container">
+      <h2>MoonRider : '{{ datas.webSite }}'</h2>
+    </div>
   </div>
 
 </header>
 
 <main class="main" role="main">
+  <div class="container">
+    <h2>Website stats</h2>
 
-  Home page
+    <hr/>
 
+    <div class="row">
+
+      <h3>Graph stats</h3>
+
+      <div id="chart_div" style="width: 900px; height: 500px;"></div>
+
+    </div>
+
+    <hr/>
+
+    <div class="row">
+
+      <h3>Day</h3>
+
+      <div class="col-lg-3">
+        <h4>Total Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.day.stats.totalLoadingTime.avg }}<br/>
+            {{ datas.day.stats.totalLoadingTime.max }}<br/>
+            {{ datas.day.stats.totalLoadingTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>DOMContent Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.day.stats.domContentLoadTime.avg }}<br/>
+            {{ datas.day.stats.domContentLoadTime.max }}<br/>
+            {{ datas.day.stats.domContentLoadTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>Server Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.day.stats.serverLoadingTime.avg }}<br/>
+            {{ datas.day.stats.serverLoadingTime.max }}<br/>
+            {{ datas.day.stats.serverLoadingTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>Load Event Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.day.stats.loadEventTime.avg }}<br/>
+            {{ datas.day.stats.loadEventTime.max }}<br/>
+            {{ datas.day.stats.loadEventTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+
+    <hr/>
+
+
+    <div class="row">
+
+      <h3>Month</h3>
+
+      <div class="col-lg-3">
+        <h4>Total Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.month.stats.totalLoadingTime.avg }}<br/>
+            {{ datas.month.stats.totalLoadingTime.max }}<br/>
+            {{ datas.month.stats.totalLoadingTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>DOMContent Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.month.stats.domContentLoadTime.avg }}<br/>
+            {{ datas.month.stats.domContentLoadTime.max }}<br/>
+            {{ datas.month.stats.domContentLoadTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>Server Loading Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.month.stats.serverLoadingTime.avg }}<br/>
+            {{ datas.month.stats.serverLoadingTime.max }}<br/>
+            {{ datas.month.stats.serverLoadingTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+        <h4>Load Event Time</h4>
+
+        <div class="row">
+
+          <div class="col-lg-6">
+            <strong>Average :</strong><br/>
+            <strong>Max :</strong><br/>
+            <strong>Min :</strong>
+          </div>
+
+          <div class="col-lg-6">
+            {{ datas.month.stats.loadEventTime.avg }}<br/>
+            {{ datas.month.stats.loadEventTime.max }}<br/>
+            {{ datas.month.stats.loadEventTime.min }}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
 </main>
 
 <footer class="footer" role="contentinfo">
-  footer
+  <hr/>
+  <div class="container">
+    Copyright - Florian Mithieux
+  </div>
 </footer>
 
 
@@ -47,6 +242,27 @@
   })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
   ga('create', 'UA-XXXXXXXX-XX');
   ga('send', 'pageview');
+</script>
+
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+      [{% for headStats in datas.fullStats.head %}'{{ headStats}}',{% endfor %}],
+      {% for bodyStats in datas.fullStats.body %}
+      ['{{bodyStats.path}}', {{bodyStats.totalLoadingTime}}, {{bodyStats.domContentLoadTime}}, {{bodyStats.serverLoadingTime}}, {{bodyStats.loadEventTime}}],
+      {% endfor %}
+    ]);
+
+    var options = {
+      title: 'Graph Stats',
+      hAxis: {title: 'Day', titleTextStyle: {color: 'gray'}}
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
 </script>
 
 <script src="/assets/js/scripts.js"></script>

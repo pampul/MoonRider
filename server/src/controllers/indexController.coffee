@@ -7,21 +7,23 @@ config = require("./../config/config")
 
 # Globals
 datas =
+  webSite: ''
   year:
     path: ''
     stats: {}
   month:
     path: ''
     stats: {}
-    fullStats: {}
   day:
     path: ''
     stats: {}
+  fullStats: {}
 
 
 exports.index = (req, res) ->
   date = new Date();
-  webSitePath = config.root + '/data/' + req.params.site
+  datas.webSite = req.params.site
+  webSitePath = config.root + '/data/' + datas.webSite
   datas.year.path = webSitePath + '/' + date.getFullYear()
   datas.month.path = datas.year.path + '/' + pad(date.getMonth() + 1)
   datas.day.path = datas.month.path + '/' + pad(date.getDate())
@@ -36,13 +38,13 @@ exports.index = (req, res) ->
     files = getMonthFiles datas.month.path + '/'
     datas.month.stats = getDataForFiles datas.month.path + '/', files
 
-    # Get current month full stats
-    paths = fs.readdirSync datas.month.path
-    datas.month.fullStats = getDataFullStats datas.month.path, paths
-
     # Get current year data
     files = getYearFiles datas.year.path + '/'
     datas.year.stats = getDataForFiles datas.year.path + '/', files
+
+    # Get current month full stats
+    paths = fs.readdirSync datas.month.path
+    datas.fullStats = getDataFullStats datas.month.path, paths
 
     res.render 'index', {"datas": datas, "assets": config.assets}
 
