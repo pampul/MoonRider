@@ -14,14 +14,3 @@ Get started with MoonRider:
 3. Execute in the shell `bower install` to install each front-end dependencies.
 4. Execute in the shell `gulp` to generate the stylesheets and scripts files.
 5. Open a new shell and execute `gulp node-dev` to launch the node.js server, listening to 8888 port.
-
-
-## Roadmap
-
-*Front-End Tasks*
-* Basic Loading Time via Javascript (DOMContentLoaded + LoadEvent + Server)
-
-*Back-End Tasks*
-* Put data in files
-* Create average per day
-* Display stats of data
