@@ -13,6 +13,7 @@ datas =
   month:
     path: ''
     stats: {}
+    fullStats: {}
   day:
     path: ''
     stats: {}
@@ -30,17 +31,22 @@ exports.index = (req, res) ->
     #res.render 'index', {"title": "Ninja Stack"}
 
     # Get current day data
-    files = fs.readdirSync(datas.day.path)
-    datas.day.stats = getDataForFiles(datas.day.path + '/', files)
+    files = fs.readdirSync datas.day.path
+    datas.day.stats = getDataForFiles datas.day.path + '/', files
 
     # Get current month data
-    files = getMonthFiles(datas.month.path + '/')
-    datas.month.stats = getDataForFiles(datas.month.path + '/', files)
+    files = getMonthFiles datas.month.path + '/'
+    datas.month.stats = getDataForFiles datas.month.path + '/', files
+
+    # Get current month full stats
+    paths = fs.readdirSync datas.month.path
+    datas.month.fullStats = getDataFullStats datas.month.path, paths
 
     # Get current year data
-    files = getYearFiles(datas.year.path + '/')
-    datas.year.stats = getDataForFiles(datas.year.path + '/', files)
-    console.log datas.year.stats
+    files = getYearFiles datas.year.path + '/'
+    datas.year.stats = getDataForFiles datas.year.path + '/', files
+
+    console.log datas.month.fullStats
 
   else
     res.send 'No data founded.'
@@ -125,5 +131,37 @@ getDataForFiles = (rootPath, files) ->
   stats.domContentLoadTime.avg = (stats.domContentLoadTime.total / stats.count).toFixed(1)
   stats.serverLoadingTime.avg = (stats.serverLoadingTime.total / stats.count).toFixed(1)
   stats.loadEventTime.avg = (stats.loadEventTime.total / stats.count).toFixed(1)
+
+  return stats
+
+getDataFullStats = (rootPath, paths) ->
+
+  stats =
+    head: [
+      "Day"
+      "Total Loading Time"
+      "Dom Content Loading Time"
+      "Server Loading Time"
+      "Load Event Time"
+    ]
+    body: []
+
+  pushedData = []
+
+  paths.sort()
+  for path in paths
+    files = fs.readdirSync(rootPath+'/'+path)
+    pushedData.push
+      path: path
+      data: getDataForFiles rootPath+'/'+path+'/', files
+
+
+  for data in pushedData
+    stats.body.push
+      path: data.path
+      totalLoadingTime: data.data.totalLoadingTime.avg
+      domContentLoadTime: data.data.domContentLoadTime.avg
+      serverLoadingTime: data.data.serverLoadingTime.avg
+      loadEventTime: data.data.loadEventTime.avg
 
   return stats
