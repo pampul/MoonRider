@@ -12,6 +12,7 @@ module.exports = (app) ->
   app.set "view engine", "html"
   app.engine "html", swig.renderFile
   app.set "views", config.root + '/../app/public'
+  app.use '/assets', express.static config.root + '/../app/public/assets'
 
   app.use (req, res, next) ->
     if req.headers.origin

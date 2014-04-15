@@ -27,8 +27,6 @@ exports.index = (req, res) ->
   datas.day.path = datas.month.path + '/' + pad(date.getDate())
 
   if fs.existsSync(webSitePath)
-    res.send 'Data found'
-    #res.render 'index', {"title": "Ninja Stack"}
 
     # Get current day data
     files = fs.readdirSync datas.day.path
@@ -46,7 +44,7 @@ exports.index = (req, res) ->
     files = getYearFiles datas.year.path + '/'
     datas.year.stats = getDataForFiles datas.year.path + '/', files
 
-    console.log datas.month.fullStats
+    res.render 'index', {"datas": datas, "assets": config.assets}
 
   else
     res.send 'No data founded.'
