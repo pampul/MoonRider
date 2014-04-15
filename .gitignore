@@ -19,6 +19,20 @@ node_modules
 ## EditorConfig
 .idea
 
+## Bower
+client/src/components
+
+## Server
+server/data
+server/dist
+
+## Client
+client/dist
+
+## App
+app/public/assets/components
+app/public/assets/css
+app/public/assets/js
 
 ## Sass
 .sass-cache
